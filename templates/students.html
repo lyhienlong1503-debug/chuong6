@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Danh sách sinh viên{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Danh sách sinh viên</h2>
+
+    <!-- Kiểm tra nếu có dữ liệu thì hiển thị bảng -->
+    {% if students %}
+        <table class="table table-striped table-bordered shadow-sm">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>MSSV</th>
+                    <th>Họ và tên</th>
+                    <th>GPA</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Vòng lặp Jinja2 duyệt qua từng sinh viên -->
+                {% for sv in students %}
+                    <tr>
+                        <td>{{ sv.id }}</td>
+                        <td>{{ sv.mssv }}</td>
+                        <td>{{ sv.name }}</td>
+                        <td>{{ sv.gpa }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <!-- Thông báo nếu danh sách trống -->
+        <div class="alert alert-warning" role="alert">
+            Chưa có dữ liệu sinh viên nào! Hãy truy cập đường dẫn <a href="/them-mau" class="alert-link">/them-mau</a> để tạo dữ liệu mẫu trước.
+        </div>
+    {% endif %}
+
+</div>
+{% endblock %}
